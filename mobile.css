@@ -1,0 +1,126 @@
+/* Phase 1. All overrides are phone-only; the original styles remain unchanged. */
+@media (max-width:600px){
+ html{scroll-padding-top:72px}
+ body{min-width:0}
+ .workspace{margin-left:0;min-width:0}
+ #main{zoom:1!important;width:100%;max-width:100%;padding:18px max(16px,env(safe-area-inset-right)) 24px max(16px,env(safe-area-inset-left))}
+ .topbar{height:auto;min-height:60px;padding:calc(6px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 6px max(12px,env(safe-area-inset-left));gap:8px;flex-wrap:wrap}
+ .topbar .zoom-control,.topbar #save-state{display:none}
+ .topbar .breadcrumb{flex:1;min-width:0;font-size:0;overflow-wrap:anywhere}
+ .topbar .breadcrumb>span{display:none}
+ .topbar #breadcrumb{font-size:13px}
+ .topbar #export-top{font-size:13px!important;padding:0 10px!important}
+ #menu-toggle{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+ #sidebar{max-width:calc(100vw - 56px);height:100dvh;padding-top:calc(16px + env(safe-area-inset-top));padding-bottom:calc(16px + env(safe-area-inset-bottom));z-index:61}
+ body:not(.menu-open) #sidebar{visibility:hidden;pointer-events:none}
+ body.menu-open #sidebar{visibility:visible;pointer-events:auto;transform:translateX(0)}
+ body.mobile-drawer-open{overflow:hidden}
+ .mobile-drawer-backdrop{position:fixed;inset:0;width:100%;height:100dvh;border:0;background:#2d303966;z-index:60;border-radius:0;padding:0}
+ #sidebar .brand{min-height:44px}
+ #sidebar .nav-link{min-height:44px}
+ #main .page-heading{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+ #main .page-heading>div{min-width:0;max-width:100%}
+ #main .page-heading h1{font-size:26px!important;line-height:1.2;overflow-wrap:anywhere}
+ #main .page-heading p{font-size:14px;line-height:1.5;margin-top:8px}
+ #main .page-heading .heading-actions{width:100%;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px}
+ #main .mp-picker{flex:1 0 100%;width:100%;max-width:100%;order:-1}
+ #main .mp-picker .mp-trigger{flex:1}
+ #main .mp-picker .mp-step{min-width:44px}
+ body :is(button,select,[role="button"],a.button){min-width:44px!important;min-height:44px!important;touch-action:manipulation}
+ body :is(input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),select,textarea){font-size:16px!important;min-height:44px!important;max-width:100%;box-sizing:border-box}
+ body input:is([type="checkbox"],[type="radio"]){font-size:16px!important}
+ body input[type="hidden"]{display:none!important}
+ #main :is(.button,.plan-amount-button),#editor .button{height:auto;min-height:44px;white-space:normal;line-height:1.35;padding:8px 10px}
+ #main :is(.metrics,.metric-four){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+ #main .metrics>.metric{container-type:inline-size;min-width:0;padding:12px!important;min-height:100px!important;border-radius:12px}
+ #main .metrics>.metric .metric-value{font-size:clamp(.95rem,9cqi,1.6rem)!important;line-height:1.25;letter-spacing:-.02em;white-space:nowrap;overflow-wrap:normal;word-break:normal;margin:8px 0 6px;max-width:100%}
+ #main .metrics>.metric.mobile-metric-wide{grid-column:1/-1}
+ #main .metrics>.metric .metric-label{font-size:11px;min-height:0;overflow-wrap:anywhere}
+ #main .metrics>.metric .metric-note{font-size:12px;min-height:0;line-height:1.4}
+ #main :is(.chart-grid,.annual-charts,.summary-grid,.grid-two,.grid-three,.monthly-summary-grid,.monthly-spending-row,.networth-charts-row,.debt-overview-charts,.settings-top-grid,.settings-category-grid){grid-template-columns:minmax(0,1fr)!important;gap:14px}
+ #main :is(.panel,.item-card){min-width:0;max-width:100%;border-radius:12px}
+ #main .panel-head{height:auto;min-height:48px;flex-wrap:wrap;gap:8px;padding:12px 14px}
+ #main .panel-body{min-width:0;padding:14px}
+ #main .table-wrap{min-width:0;max-width:100%;overflow:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ #main :is(.toolbar,.filters,.pagination){max-width:100%;flex-wrap:wrap;gap:8px}
+ #main .toolbar>*{min-width:0;max-width:100%}
+ #main .toolbar .search{flex:1 0 100%;min-width:0;width:100%}
+ #main .toolbar select{flex:1 1 130px;width:auto}
+ #main .pagination{padding:12px;align-items:center}
+ #main .tabs{gap:8px;padding:0 10px}
+ #main .tab{padding:10px}
+ .mobile-tap-label{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:44px;min-height:44px;margin:0;cursor:pointer}
+ body label:has(input:is([type="checkbox"],[type="radio"])){min-height:44px;align-items:center}
+ #main .annual-charts>.panel{height:auto;min-height:0}
+ #main :is(.annual-charts .chart-inner,.annual-monthly-chart,.monthly-daily-chart){contain:none;min-height:0}
+ #main .annual-charts .chart-inner>svg.cartesian-chart,#main .annual-monthly-chart>svg.cartesian-chart{height:210px;min-height:210px;max-height:220px;max-width:100%;flex:none}
+ #main .monthly-daily-chart>svg.cartesian-chart{position:static;inset:auto;display:block;width:100%;height:210px;min-height:210px;max-height:210px;flex:none;margin:0}
+ #main .monthly-daily-chart{padding:12px;flex:0 0 auto;min-height:234px;contain:none}
+ #main .annual-spending-chart .donut-wrap{width:190px;max-width:100%;margin:4px auto 10px}
+ #main .donut-legend{max-width:100%;gap:8px 12px;margin:0 auto}
+ #main .donut-legend span{font-size:12px;min-width:0;white-space:normal}
+ #main .annual-charts+.summary-grid table,#main .monthly-summary-table{height:auto}
+ #main .annual-charts+.summary-grid .table-wrap,#main .monthly-summary-grid .table-wrap{flex:0 0 auto}
+ #main .annual-monthly-controls{position:static;transform:none;margin-left:auto}
+ #editor,#editor:has(.page-quick-guide){position:fixed;inset:0;margin:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;padding:0;border:0;border-radius:0;overflow:hidden}
+ #editor #editor-form{display:flex;flex-direction:column;height:100%;min-height:0;margin:0}
+ #editor .dialog-head{position:sticky;top:0;z-index:2;flex-shrink:0;display:flex;gap:12px;align-items:center;margin:0;padding:calc(12px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));background:var(--white);border-bottom:1px solid var(--line)}
+ #editor .dialog-head h2,#editor:has(.page-quick-guide) .dialog-head h2{font-size:21px;line-height:1.3;min-width:0;overflow-wrap:anywhere}
+ #editor #close-dialog{flex-shrink:0}
+ #editor #form-body{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;padding:16px max(16px,env(safe-area-inset-right)) 20px max(16px,env(safe-area-inset-left));scroll-padding:24px}
+ #editor .form-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ #editor .form-grid .full{grid-column:1}
+ #editor #form-error{flex-shrink:0;max-height:18dvh;overflow:auto;margin:0;padding:8px 16px;font-size:14px;background:var(--white)}
+ #editor #form-error:empty{display:none}
+ #editor .dialog-actions{position:sticky;bottom:0;flex-shrink:0;gap:10px;margin:0;padding:12px max(16px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:var(--white);border-top:1px solid var(--line)}
+ #editor .dialog-actions>.button{flex:1;min-width:0}
+ #editor .form-grid label{font-size:14px;min-width:0}
+ #toast{max-width:calc(100vw - 32px);width:max-content;bottom:calc(16px + env(safe-area-inset-bottom));padding:12px 16px;overflow-wrap:anywhere}
+ .workspace>footer{padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));flex-wrap:wrap}
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+ /* Phase 2: record tables become cards without duplicating action controls. */
+ #main table.mobile-record-table{display:block;width:100%;min-width:0;table-layout:auto;white-space:normal;height:auto}
+ #main .mobile-record-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ #main .mobile-record-table :is(tbody,tfoot){display:block;width:100%}
+ #main .mobile-record-table :is(tbody,tfoot)>tr{display:block;margin:12px;padding:8px 12px;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 2px 6px #2d303908}
+ #main .mobile-record-table :is(td,td.numeric){display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;width:auto;height:auto;min-height:40px;max-width:100%;padding:8px 0;text-align:right;font-size:14px;white-space:normal;overflow-wrap:anywhere;border-bottom:1px solid var(--line)}
+ #main .mobile-record-table td::before{content:attr(data-label);font-size:12px;color:var(--muted);font-weight:500;text-align:left;flex:0 1 40%}
+ #main .mobile-record-table td[data-label=""]::before,#main .mobile-record-table td.mobile-full-cell::before{display:none}
+ #main .mobile-record-table td:last-child{border-bottom:0}
+ #main .mobile-record-table td.mobile-row-actions{display:block;width:100%;padding-top:12px}
+ #main .mobile-record-table td.mobile-row-actions .button{display:flex;width:100%;margin-top:4px}
+ #main .mobile-record-table td.mobile-full-cell{justify-content:center;text-align:center}
+ #main .mobile-record-table td :is(input:not([type="checkbox"]),select){width:140px;min-width:0;max-width:100%}
+ #main .mobile-record-table td .mobile-tap-label{margin-left:auto}
+ #main .debt-card-schedule{max-height:440px}
+ #main .mobile-setting-card{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px!important;margin-bottom:10px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+ #main .mobile-setting-card>div{min-width:0;overflow-wrap:anywhere;text-align:left}
+ #main .mobile-setting-card>.button{width:100%}
+ #main .mobile-analytic-scroll{isolation:isolate;position:relative;background:linear-gradient(to left,#70618218,transparent) right/14px 100% no-repeat;scroll-padding-left:120px}
+ #main .mobile-analytic-scroll table{min-width:480px}
+ #main .mobile-analytic-scroll :is(th,td):first-child{position:sticky;left:0;z-index:1;min-width:100px;max-width:160px;background:var(--white);box-shadow:2px 0 4px #2d30390d}
+ #main .mobile-analytic-scroll tfoot td:first-child{background:var(--plum-bg)}
+ #main .mobile-agenda{display:flex;flex-direction:column;gap:12px;height:auto!important;border:0}
+ #main .mobile-agenda>.weekday,#main .mobile-agenda>.mobile-empty-day{display:none}
+ #main .mobile-agenda>.calendar-day:not(.mobile-empty-day){display:flex;flex-direction:column;gap:8px;min-height:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:visible}
+ #main .mobile-agenda .calendar-date-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0 0 4px}
+ #main .mobile-agenda .calendar-date-header>.day-number{display:none}
+ #main .mobile-agenda-date{font-size:14px;font-weight:600}
+ #main .mobile-agenda .payday-date{padding:8px 12px;border-radius:8px;min-height:44px;font-size:14px}
+ #main .mobile-agenda .event{width:100%;min-height:44px;padding:10px 12px;margin:0;border-radius:8px;font-size:14px;line-height:1.5;text-align:left}
+ #main .mobile-agenda .event b{font-size:14px;margin-bottom:3px}
+ #main .mobile-agenda-empty{padding:20px;background:var(--white);border:1px solid var(--line);border-radius:12px;color:var(--muted)}
+ #main .ns-layout,#main .ns-calendar-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+ #main .ns-settings .panel-body{display:block}
+ #main .ns-days{grid-template-columns:repeat(7,minmax(44px,1fr));grid-template-rows:24px repeat(6,minmax(44px,auto));gap:2px;padding:8px}
+ #main .ns-day{min-width:44px;min-height:44px;font-size:14px}
+ #main .ns-week-control{flex-wrap:wrap}
+ #main :is(.allocation-budget-chart,.networth-monthly-chart,.debt-balance-chart)>svg.cartesian-chart{width:100%;min-width:0;max-width:100%;height:210px;min-height:210px;max-height:220px;flex:none}
+ #main .donut-wrap{width:210px;max-width:100%;margin-left:auto;margin-right:auto}
+ #main .donut-legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #main svg.cartesian-chart .axis-label{font-size:11px}
+ #main .mobile-analytic-scroll{mask-image:linear-gradient(to right,#000 calc(100% - 12px),#0009)}
+ #main .settings-single-page .label-row{flex-wrap:wrap;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+ #main .settings-single-page .label-row>.button{flex:1 0 100%;width:100%}
+}
