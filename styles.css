@@ -768,7 +768,7 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
  .monthly-spending-row .donut-wrap{width:260px;max-width:100%;margin:0 auto 6px}
  .monthly-spending-row .budget-remaining-body{gap:8px;padding:12px 20px 16px}
  .monthly-spending-row .budget-remaining-amount{font-size:2rem}
- .monthly-spending-row .networth-goal-gauge{max-width:190px;margin:0 auto}
+ .monthly-spending-row .networth-goal-gauge{max-width:300px;margin:0 auto}
  .monthly-spending-row .budget-remaining-totals{padding:10px 0}
 }
 
