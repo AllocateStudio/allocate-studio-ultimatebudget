@@ -5,7 +5,28 @@ let settingsJumpTarget=null;
 let storageLoadFailed=false,lastStoredBudget=null;
 let storageIssue='',state=loadState(),route='annual',filter={search:'',type:'All',status:'All',account:'All',person:'All',month:'All',page:0},categoryTab='Income',dialogSave=null;
 const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function loadState(){try{const saved=localStorage.getItem(STORAGE_KEY);lastStoredBudget=saved;if(saved){const s=JSON.parse(saved);validateState(s);return s;}}catch(e){storageLoadFailed=true;storageIssue='Saved data could not be loaded. Export or repair your saved file before replacing it.';}return structuredClone(window.BUDGET_DEMO);}
+function loadState(){try{const saved=localStorage.getItem(STORAGE_KEY);lastStoredBudget=saved;if(saved){const s=JSON.parse(saved);validateState(s);return s;}}catch(e){storageLoadFailed=true;storageIssue='Saved data could not be loaded. Export or repair your saved file before replacing it.';}return starterState();}
+// Categories, people and accounts are the reusable template; every entered amount, rule and history is wiped.
+function blankBudgetData(s){
+ s.variableTransactions=[];s.transfers=[];s.recurringRules=[];s.paymentOverrides={};
+ s.monthlyBudgets=E.months(s).map(month=>({month,includeOpeningBalance:false,plannedOpeningBalance:0,actualOpeningBalance:0,categoryPlans:{}}));
+ s.accounts.forEach(a=>{a.openingBalance=0;a.adjustment=0;a.adjustmentEntries=[];a.lastChecked=null;});
+ s.savingsGoals=[];
+ s.debtPlan.debts=[];s.debtPlan.monthlyAdjustments={};s.debtPlan.extraMonthlyPayment=0;
+ s.netWorth.items.forEach(i=>i.balances={});s.netWorth.goal=0;
+ return s;
+}
+// First-run state for a new browser: the shipped template with no sample numbers, for the current calendar year.
+// Matches ensureReportYear()'s own convention (calendar year, today's month selected) so the two never disagree.
+function starterState(){
+ const s=structuredClone(window.BUDGET_DEMO),year=new Date().getFullYear();
+ s.settings.startYear=year;s.settings.startMonth=1;
+ blankBudgetData(s);
+ s.allocationPlan.startDate=`${year}-01-01`;s.allocationPlan.endDate=`${year}-12-31`;
+ s.debtPlan.startDate=`${year}-01-01`;
+ s.viewPreferences={annualSeries:'Bills'};
+ return s;
+}
 function updateSaveStatus(){const el=$('#save-state');if(!el)return;const paused=storageLoadFailed||!!storageIssue;el.textContent=paused?'Saving paused':lastStoredBudget?'Saved on this device':'Local workspace';el.title=paused?storageIssue:'Budget data stays in this browser';el.dataset.status=paused?'paused':'ready';}
 function recoveryDateLabel(value){const d=new Date(value);if(!Number.isFinite(d.getTime()))return 'Unknown date';return new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZoneName:'short'}).format(d);}
 function saveState(){if(storageLoadFailed){storageIssue='Saved data could not be loaded. Restore a valid backup or explicitly reset the budget before saving. Your original saved data has been kept.';updateSaveStatus();return false;}try{if(localStorage.getItem(STORAGE_KEY)!==lastStoredBudget){storageIssue='Another tab changed this budget. Saving is paused to protect those changes. Download this tab as a backup before reloading.';updateSaveStatus();return false;}const serialized=JSON.stringify(state);localStorage.setItem(STORAGE_KEY,serialized);lastStoredBudget=serialized;storageIssue='';updateSaveStatus();return true;}catch(e){storageIssue='Your browser could not save changes. Export your data to keep a copy.';toast(storageIssue);updateSaveStatus();return false;}}
