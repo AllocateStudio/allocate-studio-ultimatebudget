@@ -1,2 +1,99 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Allocate Studio · Backup guide</title><style>body{font:17px/1.7 system-ui,sans-serif;color:#2d3039;background:#f8f8f6;max-width:850px;margin:auto;padding:32px 22px}h1{color:#706182;line-height:1.25}h2{font-size:21px;color:#587591;margin-top:32px}</style><main><h1>Allocate Studio: opening, saving and restoring your budget</h1><p>This edition is designed for desktop and laptop browsers. Phones and tablets are not supported in this release. No website account or activation is required. Unzip the complete app folder first. Keep index.html, the JavaScript files, styles.css and assets together. Open index.html in a normal browser window, not a file preview or private window. Keep the app in a stable location. This release is a folder-based web app, not a self-contained HTML file.</p><p>Autosave keeps your working budget in this browser. Downloaded JSON backups let you restore it if that browser data is lost.</p><h2>Step 1: Understand what is saved</h2><p>The app has two separate parts. Its HTML, JavaScript, styles and assets are the application. Your entered budget is saved in this browser’s local storage. Editing the budget does not write your transactions into index.html. Copying the app folder alone does not copy your budget.</p><h2>Step 2: Download your first backup</h2><p>Finish editing your fields and click Save changes if a form is open. In the app, open Backup and click Download backup. Your browser downloads a JSON file containing your current budget. If it asks where to save, choose your backup folder. Otherwise check the browser’s Downloads list. Starting the download is not proof that the file reached your chosen folder: check that it is there.</p><h2>Step 3: Keep copies outside the browser</h2><p>Keep dated JSON backups in a folder you can find, with another copy on an external drive or in your own secure cloud storage. Keep several versions instead of replacing your only copy. The backup contains financial information in readable text; it is not password protected. Do not share it publicly.</p><h2>Step 4: Make backups part of your routine</h2><p>Download a new backup after each session with important changes and at least weekly while using the budget. Always export before clearing browser data, switching browsers or devices, moving or renaming the app folder, importing another budget, installing an updated app or using Reset demo or Clear budget. Export is manual; the app does not automatically create files in your backup folder.</p><h2>Step 5: Restore a saved budget</h2><p>First download a backup of the budget currently open, if you need to keep it. In the app, open Backup, click Restore from backup and select an Allocate Studio JSON export, not index.html, a ZIP or a spreadsheet. The app checks the file and asks for confirmation. Confirm only when you want its contents to replace the current budget. Import replaces; it does not merge. Check the budget name, dates, recent transactions and balances afterward.</p><h2>Step 6: Move to another device or browser</h2><p>Copy the complete app folder and your latest JSON backup. Open index.html from the extracted app folder in the destination browser. Open Backup and restore the JSON. Check the restored values before continuing. Changes on the old and new devices do not synchronise. Choose one as your main working copy to avoid two different versions.</p><h2>Step 7: Update the application</h2><p>Before opening an update, export your latest budget from the old version and keep the old app folder. Extract the complete new app into a separate folder, open it, and restore your backup if your data is not shown. Import compatibility is checked by the app; it is not guaranteed for every future version. If import fails, keep the backup unchanged and return to the old version. Do not delete the old folder or backup until you have checked the new version.</p><h2>Step 8: If your data seems missing</h2><p>Stay in the same browser and browser profile you originally used, and try the original app file location. Do not reset or enter replacement data immediately. A different browser, profile, private window or file location may open separate storage. If the original stored data is unavailable, restore your latest JSON. Only changes included in that backup can be recovered; the seller does not hold a copy of your local budget.</p><h2>Step 9: If the browser cannot save</h2><p>If the top status says Saving paused or you see a save warning, keep the page open and download a backup immediately. Do not assume closing and reopening will preserve those changes. Avoid private or incognito mode for daily use. Browser storage can be cleared or become unavailable. A JSON copy outside the browser is your recovery file.</p><h2>Step 10: Check your backup before you need it</h2><p>After your first export, confirm that the file is present and not empty. For a recovery test, open the app in a separate browser profile with no budget you need to preserve and import a copy of the JSON. Compare the budget dates, transaction amounts and balances with the original. Keep using your original working profile after the test. This check validates that snapshot, not later changes.</p><h2>Before using your real data</h2><p>Try a sample entry, save, reload in the same browser and check it remains. Export and test restore before relying on the app. Devices and browsers can handle local files differently. Use this release on a desktop or laptop computer.
-</p></main></html><h2>Recovery copies</h2><p>Recovery copies in Backup contains up to 10 local safety snapshots made before clearing, resetting, importing or changing a recurring schedule. Download copy exports one for inspection or later import. Dates use your local time zone. These copies share browser storage; keep external JSON backups too. If a required safety copy cannot be saved, the protected action is blocked.</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Allocate Studio · Backup guide</title>
+<style>
+body{font:17px/1.7 system-ui,sans-serif;color:#2d3039;background:#f8f8f6;max-width:850px;margin:auto;padding:32px 22px}
+h1{color:#706182;line-height:1.25}
+h2{font-size:21px;color:#587591;margin-top:32px}
+strong{color:#2d3039}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Start here: how your budget is saved (please read this first)</h1>
+
+<p>Welcome! Before you start entering real numbers, there's one important thing to understand about how Allocate Studio works — it only takes two minutes to read, and it will save you a headache later.</p>
+
+<p><strong>Your budget lives in your browser, not on any server.</strong> Nobody — not us, not anyone else — can see it. But that also means it's <em>your</em> job to keep a backup, the same way you'd back up any file that only exists in one place. This guide shows you exactly how.</p>
+
+<h2>The one big idea</h2>
+<p>Think of it like writing in a notebook. The notebook (this app) is something you can open again and again. But everything you <em>write</em> in it — your income, your bills, your accounts — is saved by your web browser, on the one device you're using right now.</p>
+<p>That means:</p>
+<ul>
+<li>Open it on your phone and on your laptop, and you'll see <strong>two different, empty notebooks</strong> — they don't talk to each other.</li>
+<li>Clear your browser's history/data, and the notebook's pages go blank.</li>
+<li>Switch from Chrome to Safari, even on the same computer, and it's a brand new notebook again.</li>
+</ul>
+<p>None of this is a bug — it's simply how the app keeps your financial information private. It just means backups matter more here than they would for an app with a login and a cloud account.</p>
+
+<h2>Getting started</h2>
+<p>Open the app link (or <code>index.html</code>, if you downloaded the zip version). No sign-up, no password, nothing to install. You'll land on a template with a few example categories already set up — just edit, delete or add your own, and start entering your real numbers whenever you're ready.</p>
+<p>Works great on a computer, a tablet, or a phone.</p>
+
+<h2>Save your first backup (do this today)</h2>
+<p>This takes 30 seconds and is the single most important thing in this guide.</p>
+<ol>
+<li>Open <strong>Backup</strong> in the sidebar.</li>
+<li>Click <strong>Download backup</strong>.</li>
+<li>Check your Downloads folder and make sure the file is actually there — don't just assume it worked.</li>
+</ol>
+<p>This gives you a small file with your whole budget in it. Keep it somewhere you'll remember: a folder on your computer, an external drive, or your own cloud storage (Google Drive, iCloud, Dropbox — whatever you already use). Because that file has real financial details in plain text, don't email it around or post it anywhere public.</p>
+
+<h2>When to make a new backup</h2>
+<p>Basically: <strong>whenever you've made changes you'd be annoyed to lose.</strong> As a simple habit, download a fresh backup:</p>
+<ul>
+<li>Once a week if you're using the app regularly</li>
+<li>Right before you clear your browser's history or data</li>
+<li>Right before switching to a new phone, computer, or browser</li>
+<li>Right before restoring an older backup or using <strong>Reset demo</strong> / <strong>Clear budget</strong></li>
+</ul>
+<p>The app never does this automatically — it's always your click.</p>
+
+<h2>Getting your data back (restoring a backup)</h2>
+<ol>
+<li>Open <strong>Backup</strong> → <strong>Restore from backup</strong>.</li>
+<li>Choose the backup file you saved earlier (not <code>index.html</code>, not a zip, not a spreadsheet — the small backup file the app itself created).</li>
+<li>The app will ask you to confirm, because this <em>replaces</em> everything currently in the app with what's in that file. It doesn't merge the two.</li>
+<li>After it's done, take a quick look — check a few transactions and balances look right.</li>
+</ol>
+
+<h2>Using the app on more than one device</h2>
+<p>Since your data doesn't automatically follow you between devices, here's the simplest way to move it:</p>
+<ol>
+<li>On your old device, download a backup.</li>
+<li>Open the app on the new device.</li>
+<li>Restore that backup there.</li>
+</ol>
+<p>From that point on, pick <strong>one</strong> device as your main one. If you keep entering numbers on both, they'll quietly drift apart, and you'll end up with two different versions of your budget.</p>
+
+<h2>Two tabs open at once?</h2>
+<p>If you open the app in two browser tabs (or two windows) and make changes in both, the app notices and protects you: it'll pause saving in whichever tab is now "behind," with a message like <em>"Another tab changed this budget."</em> If you see that, download a backup from that tab before doing anything else — don't just close it.</p>
+<p>Easiest fix: just use one tab at a time.</p>
+
+<h2>Can't find your budget?</h2>
+<p>Before panicking, check the obvious things first:</p>
+<ul>
+<li>Are you in the exact same browser and same profile you used before?</li>
+<li>Private/incognito windows don't save anything after you close them — were you in one?</li>
+<li>Did something get cleared (a "clean up my computer" tool, a browser reset)?</li>
+</ul>
+<p>If your budget really is gone and you don't have a backup, unfortunately there's no way to recover it — the data was only ever on your device, so we don't have a copy either. This is exactly why backups matter.</p>
+
+<h2>"Saving paused" message</h2>
+<p>If you ever see this message at the top of the screen, it means the app couldn't save your last change. Don't close the tab — download a backup right away so nothing is lost, then figure out why (usually it's the two-tabs situation above, or your browser is low on storage).</p>
+
+<h2>Test your backup once, so you trust it</h2>
+<p>Right after your first backup, do a quick dry run: open the app in a different browser (or a different profile) and restore that file there. Compare a couple of numbers to make sure they match. Then go back to using your regular browser. This just confirms the whole backup-and-restore process actually works before you ever <em>need</em> it to.</p>
+
+<h2>The built-in safety net (Recovery copies)</h2>
+<p>As extra insurance, the app automatically saves up to 10 snapshots of your budget right before anything big happens — clearing the budget, restoring a backup, using Reset demo, or changing a recurring bill's schedule. You'll find these under <strong>Backup → Recovery copies</strong>, where you can download any of them. Handy if you click the wrong thing by accident — but it's a safety net, not a replacement for your own backups, since it still lives in the same browser storage as everything else.</p>
+
+</main>
+</body>
+</html>
