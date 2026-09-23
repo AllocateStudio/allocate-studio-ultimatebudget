@@ -21,6 +21,17 @@ function blankBudgetData(s){
 function starterState(){
  const s=structuredClone(window.BUDGET_DEMO),year=new Date().getFullYear();
  s.settings.startYear=year;s.settings.startMonth=1;
+ s.categories=[
+  {id:'income-1',name:'Paycheck',type:'Income',budgetGroup:null},
+  {id:'income-2',name:'Freelance',type:'Income',budgetGroup:null},
+  {id:'bills-1',name:'Rent',type:'Bills',budgetGroup:'Needs'},
+  {id:'bills-2',name:'Electricity',type:'Bills',budgetGroup:'Needs'},
+  {id:'expenses-1',name:'Groceries',type:'Expenses',budgetGroup:'Needs'},
+  {id:'expenses-2',name:'Gas',type:'Expenses',budgetGroup:'Needs'},
+  {id:'debt-1',name:'Credit Card',type:'Debt',budgetGroup:'Debt & Savings'},
+  {id:'savings-1',name:'Emergency Fund',type:'Savings',budgetGroup:'Debt & Savings'},
+ ];
+ s.accounts=[];s.people=[];
  blankBudgetData(s);
  s.allocationPlan.startDate=`${year}-01-01`;s.allocationPlan.endDate=`${year}-12-31`;
  s.debtPlan.startDate=`${year}-01-01`;
