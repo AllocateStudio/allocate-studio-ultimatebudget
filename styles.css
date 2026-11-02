@@ -304,7 +304,7 @@ dialog::backdrop{background:#30213b55;backdrop-filter:blur(3px)}
 .settings-category-row small{color:var(--table-tone)}
 .settings-category-row .button{padding-left:10px;padding-right:10px;background:var(--table-light);border-color:var(--table-light);color:var(--table-tone)}
 .settings-category-row .button:hover{background:var(--table-tone);color:white}
-.settings-category-add{margin-top:auto;padding:16px 18px;background:var(--table-light);text-align:center}
+.settings-category-add{margin-top:auto;padding:16px 18px;background:transparent;text-align:center}
 .settings-category-add .button{color:white;background:var(--table-tone);border-color:var(--table-tone)}
 
 
