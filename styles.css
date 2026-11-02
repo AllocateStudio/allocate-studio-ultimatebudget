@@ -1018,3 +1018,10 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 /* Undo link inside the toast after a deletion. */
 #toast.has-action{pointer-events:auto}
 #toast .toast-undo{margin-left:14px;padding:4px 2px;min-height:32px;border:0;background:transparent;color:#fff;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}
+
+/* Payment schedule and Recurring share one sidebar entry; this switch moves between them. */
+.screen-switch{display:inline-flex;gap:4px;margin-top:10px;padding:3px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.switch-pill{min-height:34px;padding:6px 16px;border:0;border-radius:999px;background:transparent;color:var(--plum);font:inherit;font-size:.86rem;cursor:pointer}
+.switch-pill:hover{background:var(--plum-light)}
+.switch-pill.active{background:var(--plum);color:#fff}
+.switch-pill:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
