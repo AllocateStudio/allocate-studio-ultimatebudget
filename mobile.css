@@ -136,5 +136,7 @@
  #main .metrics>.metric .metric-label{font-size:11px!important;line-height:16px;min-height:16px!important}
  #main .metrics>.metric .metric-value{font-size:clamp(.95rem,9cqi,1.5rem)!important;margin:3px 0 0!important;line-height:1.2}
  /* The page title scrolls away on phones; pinning it would take a fifth of the screen. */
+ #main .screen-switch{display:flex;width:100%}
+ #main .screen-switch .switch-pill{flex:1 1 0;justify-content:center;text-align:center}
  #main>.page-heading{position:static;padding-block:0;border-bottom:0;box-shadow:none;background:transparent}
 }
