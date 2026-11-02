@@ -947,3 +947,64 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 #main[data-reduced-zoom="true"] .annual-charts+.summary-grid .table-wrap{flex:0 0 auto}
 /* A bounded table scrolls both ways instead of losing its final rows. */
 #main .table-wrap{min-width:0;max-width:100%;overflow:auto}
+
+/* Keep the current page title and its actions beneath the workspace toolbar. */
+#main > .page-heading{
+ position:sticky;
+ top:var(--page-heading-top,70px);
+ z-index:14;
+ background:var(--bg);
+ padding-block:10px;
+ border-bottom:1px solid var(--line);
+ box-shadow:0 5px 12px -10px #30213b35;
+}
+
+/* Search stays visible; secondary transaction filters expand on demand. */
+#main .compact-filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+#main .compact-filters .search{flex:1 1 240px;min-width:0;max-width:420px}
+#main .compact-filters .filters-toggle{flex:0 0 auto;gap:8px}
+.filters-toggle[aria-expanded="true"]{border-color:var(--plum);color:var(--plum);background:var(--plum-light)}
+.filter-count{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--plum);color:white;font-size:.75rem}
+#main .compact-filters .filter-fields{flex:1 0 100%;display:flex;flex-wrap:wrap;gap:10px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
+#main .compact-filters .filter-fields[hidden]{display:none}
+#main .compact-filters .filter-fields select{flex:1 1 150px;min-width:0;max-width:260px}
+@media(max-width:600px){
+ #main .compact-filters .search{flex:1 0 100%;max-width:none}
+ #main .compact-filters .filter-fields select{flex:1 1 140px;max-width:none}
+}
+
+
+
+.interactive-transaction{cursor:pointer}
+.interactive-transaction:hover>td,.interactive-transaction:focus-visible>td{background:#f6f3f9}
+.interactive-transaction:focus-visible{outline:2px solid var(--plum);outline-offset:-2px}
+.row-menu-trigger{font-size:1.35rem!important;min-width:38px}
+.row-actions-popover{position:fixed;inset:auto;margin:0;padding:6px;min-width:165px;max-width:calc(100vw - 16px);border:1px solid var(--line);border-radius:10px;background:white;box-shadow:0 8px 28px #30213b25}
+.row-actions-popover:popover-open{display:grid;gap:3px}
+.row-actions-popover .button{justify-content:flex-start;border:0;box-shadow:none;width:100%}
+.row-actions-popover::backdrop{background:transparent}
+
+.button.settings-add-account{background:var(--terra);border-color:var(--terra);color:#fff}
+.button.settings-add-account:hover{background:#805858;border-color:#805858;color:#fff}
+
+/* Shared app controls; category palettes and destructive actions stay semantic. */
+:root{--control-radius:8px;--control-border:#dcd7e3;--control-focus:#70618233}
+:is(#main,#editor,.topbar,.row-actions-popover) :is(.button,.plan-amount-button){border-radius:var(--control-radius);height:var(--action-height);min-height:var(--action-height);box-sizing:border-box}
+:is(#main,#editor,.topbar) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]):not([type="color"]),select){height:var(--action-height);min-height:var(--action-height);box-sizing:border-box;border-radius:var(--control-radius);padding-block:0;font-size:var(--action-font-size);line-height:1.3}
+:is(#main,#editor) textarea{border-radius:var(--control-radius);padding:10px 12px;min-height:84px;resize:vertical}
+:is(#main,#editor,.topbar) :is(input,select,textarea):focus-visible{outline:2px solid var(--plum);outline-offset:2px;box-shadow:0 0 0 3px var(--control-focus)}
+.button:where(:not(.primary):not(.danger):not(.settings-add-account)){color:var(--plum)}
+.button:where(:not(.primary):not(.danger):not(.settings-add-account)):hover{border-color:var(--plum);background:var(--plum-light)}
+.button.primary{background:var(--plum);border-color:var(--plum);color:white}
+.button.primary:hover{background:#5f526e;border-color:#5f526e}
+.button:focus-visible,.plan-amount-button:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
+.button:disabled{cursor:default;opacity:.45;transform:none}
+:is(#main,#editor,.topbar) :is(input[type="checkbox"],input[type="radio"]){accent-color:var(--plum)}
+#main .mp-picker{border-radius:var(--control-radius);overflow:hidden}
+#main .mp-picker button{border-radius:0}
+.row-actions-popover .button{height:var(--action-height);min-height:var(--action-height);padding:0 var(--action-padding-x);font-size:var(--action-font-size)}
+
+/* Compact summary cards: label and value only, no spare room. */
+#main .metrics>.metric{min-height:0!important;height:auto;padding:12px 16px!important;display:flex;flex-direction:column;justify-content:center;container-type:inline-size}
+#main .metrics>.metric .metric-label{font-size:.71rem!important;line-height:16px;min-height:16px!important;margin:0}
+#main .metrics>.metric .metric-value{font-size:clamp(1rem,10cqi,1.6rem)!important;line-height:1.2;margin:4px 0 0!important;white-space:nowrap;overflow-wrap:normal;word-break:normal}

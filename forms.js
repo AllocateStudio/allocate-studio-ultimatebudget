@@ -83,6 +83,23 @@ function removeRecord(kind,id){
  closeDialog();confirmAction('Delete this '+kind+'?',kind==='recurring'?'Future payments from this rule will be removed. Paid occurrences remain in your actual records.':'This record will be removed from your budget. Export a backup first if you may need it later.',()=>{if(kind==='recurring')freezePaid();items.splice(items.findIndex(x=>x.id===id),1);if(kind==='recurring')for(const [key,o] of Object.entries(state.paymentOverrides))if(key.startsWith(id+':')&&!o.paid)delete state.paymentOverrides[key];if(kind==='category')state.monthlyBudgets.forEach(p=>delete p.categoryPlans[id]);});
 }
 function handleAction(action,id){
+ if(action==='row-menu'){
+  const menu=document.getElementById(id),trigger=document.querySelector(`[aria-controls="${CSS.escape(id)}"]`);if(!menu||!trigger)return;
+  if(menu.matches(':popover-open')){menu.hidePopover();return;}
+  // Position outside #main so its CSS zoom cannot scale viewport coordinates twice.
+  const home=menu.parentNode,next=menu.nextSibling;
+  document.body.append(menu);
+  const restore=()=>{if(menu.matches(':popover-open'))return;menu.removeEventListener('toggle',restore);if(home.isConnected)home.insertBefore(menu,next?.parentNode===home?next:null);else menu.remove();};
+  menu.addEventListener('toggle',restore);
+  menu.style.left='0px';menu.style.top='0px';
+  menu.showPopover();const r=trigger.getBoundingClientRect(),b=menu.getBoundingClientRect();
+  menu.style.left=Math.max(8,Math.min(r.right-b.width,window.innerWidth-b.width-8))+'px';
+  menu.style.top=Math.max(8,r.bottom+b.height+6>window.innerHeight?r.top-b.height-6:r.bottom+6)+'px';return;
+ }
+ document.querySelectorAll('.row-actions-popover:popover-open').forEach(menu=>menu.hidePopover());
+ if(action==='payment-paid'||action==='payment-unpaid'){setPaymentPaid(id,action==='payment-paid');commit(action==='payment-paid'?'Payment marked as paid':'Payment marked as unpaid');return;}
+
+ if(action==='toggle-filters'&&['recurring','variable','payments'].includes(id)){if(expandedFilters.has(id))expandedFilters.delete(id);else expandedFilters.add(id);render();document.querySelector('[data-action="toggle-filters"]')?.focus({preventScroll:true});return;}
  if(action==='copy-previous-plan'){copyPreviousMonthPlan();return;}
  if(action==='edit-networth-balance'){const [itemId,month]=id.split('|');netWorthBalanceForm(itemId,month);return;}
  if(action==='edit-category-plan'){categoryPlanForm(id);return;}
@@ -246,3 +263,17 @@ function copyPreviousMonthPlan(){
   target.categoryPlans=structuredClone(copied);target.created=true;
  });
 }
+
+/* Row activation must never intercept its independent controls or text selection. */
+function activateTransactionRow(event){
+ const row=event.target.closest('[data-row-action]');if(!row)return;
+ if(event.target.closest('button,input,select,textarea,label,a,[popover]'))return;
+ if(event.type==='keydown'){if(event.target!==row||!['Enter',' '].includes(event.key))return;event.preventDefault();}
+ else if(window.getSelection()?.toString())return;
+ handleAction(row.dataset.rowAction,row.dataset.rowId);
+}
+document.addEventListener('click',activateTransactionRow);
+document.addEventListener('keydown',activateTransactionRow);
+window.addEventListener('scroll',()=>document.querySelectorAll('.row-actions-popover:popover-open').forEach(menu=>menu.hidePopover()),{passive:true});
+
+window.addEventListener('resize',()=>document.querySelectorAll('.row-actions-popover:popover-open').forEach(menu=>menu.hidePopover()));

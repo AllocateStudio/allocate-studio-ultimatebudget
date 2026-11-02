@@ -66,3 +66,27 @@
   if (document.fonts) document.fonts.ready.then(schedule);
   schedule();
 })();
+
+/* Sticky page header follows the toolbar height and the user's content zoom. */
+(() => {
+ const main=document.querySelector('#main'),toolbar=document.querySelector('.topbar');
+ if(!main||!toolbar)return;
+ let heading=null,frame=0;
+ function update(){
+  frame=0;
+  const zoom=parseFloat(getComputedStyle(main).zoom)||1;
+  const toolbarHeight=toolbar.getBoundingClientRect().height;
+  main.style.setProperty('--page-heading-top',`${toolbarHeight/zoom}px`);
+  const next=main.querySelector(':scope > .page-heading');
+  if(next!==heading){if(heading)resize.unobserve(heading);heading=next;if(heading)resize.observe(heading);}
+  const pinned=heading&&getComputedStyle(heading).position==='sticky'?heading.getBoundingClientRect().height:0;
+  document.documentElement.style.scrollPaddingTop=`${toolbarHeight+pinned+14}px`;
+ }
+ function schedule(){if(!frame)frame=requestAnimationFrame(update);}
+ const resize=new ResizeObserver(schedule);
+ resize.observe(toolbar);
+ new MutationObserver(schedule).observe(main,{childList:true});
+ document.querySelector('#page-zoom')?.addEventListener('change',schedule);
+ window.addEventListener('resize',schedule);
+ schedule();
+})();

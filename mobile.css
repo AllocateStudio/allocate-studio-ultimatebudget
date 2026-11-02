@@ -32,7 +32,7 @@
  body input[type="hidden"]{display:none!important}
  #main :is(.button,.plan-amount-button),#editor .button{height:auto;min-height:44px;white-space:normal;line-height:1.35;padding:8px 10px}
  #main :is(.metrics,.metric-four){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
- #main .metrics>.metric{container-type:inline-size;min-width:0;padding:12px!important;min-height:100px!important;border-radius:12px}
+ #main .metrics>.metric{container-type:inline-size;min-width:0;padding:12px!important;min-height:0!important;border-radius:12px}
  #main .metrics>.metric .metric-value{font-size:clamp(.95rem,9cqi,1.6rem)!important;line-height:1.25;letter-spacing:-.02em;white-space:nowrap;overflow-wrap:normal;word-break:normal;margin:8px 0 6px;max-width:100%}
  #main .metrics>.metric.mobile-metric-wide{grid-column:1/-1}
  #main .metrics>.metric .metric-label{font-size:11px;min-height:0;overflow-wrap:anywhere}
@@ -123,4 +123,18 @@
  #main .mobile-analytic-scroll{mask-image:linear-gradient(to right,#000 calc(100% - 12px),#0009)}
  #main .settings-single-page .label-row{flex-wrap:wrap;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
  #main .settings-single-page .label-row>.button{flex:1 0 100%;width:100%}
+}
+
+/* Match field and button touch sizes; multiline labels may grow without clipping. */
+@media(max-width:600px){
+ :is(#main,#editor,.topbar,.row-actions-popover) :is(.button,.plan-amount-button){height:auto;min-height:var(--action-height);border-radius:var(--control-radius);padding:10px;white-space:normal}
+ :is(#main,#editor,.topbar) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]):not([type="color"]),select){height:var(--action-height);min-height:var(--action-height);border-radius:var(--control-radius)}
+}
+
+@media(max-width:600px){
+ #main .metrics>.metric{padding:10px 12px!important;min-height:0!important}
+ #main .metrics>.metric .metric-label{font-size:11px!important;line-height:16px;min-height:16px!important}
+ #main .metrics>.metric .metric-value{font-size:clamp(.95rem,9cqi,1.5rem)!important;margin:3px 0 0!important;line-height:1.2}
+ /* The page title scrolls away on phones; pinning it would take a fifth of the screen. */
+ #main>.page-heading{position:static;padding-block:0;border-bottom:0;box-shadow:none;background:transparent}
 }
