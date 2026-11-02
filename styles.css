@@ -261,8 +261,8 @@ dialog::backdrop{background:#30213b55;backdrop-filter:blur(3px)}
 .participant-choice{border:0;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .participant-choice legend{font-weight:600;margin-bottom:14px}
 .participant-choice label{display:flex;align-items:center;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;cursor:pointer}
-.participant-choice label:has(input:checked){border-color:var(--teal);background:#f5faf8}
-.participant-choice input{width:18px;height:18px;margin:0;accent-color:var(--teal);flex-shrink:0}
+.participant-choice label:has(input:checked){border-color:var(--plum);background:var(--plum-light)}
+.participant-choice input{width:18px;height:18px;margin:0;accent-color:var(--plum);flex-shrink:0}
 .single-participant-label{display:grid;gap:8px;margin:16px 0}
 .settings-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
 .settings-category-card{min-width:0}

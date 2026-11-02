@@ -125,7 +125,7 @@ function selectReportYear(value){
  const year=Number(value);if(!Number.isInteger(year)||year<1900||year>2199)return;
  state.viewPreferences.reportYear=year;filter.month='All';filter.page=0;saveState();render();
 }
-function heading(eyebrow,title,description='',actions=''){return `<div class="page-heading"><div><h1>${title}</h1>${description?`<p>${description}</p>`:''}</div><div class="heading-actions">${button('How to use','page-guide',route)}${['annual','nospend','networth','payments','variable'].includes(route)?yearSelector():''}${actions}</div></div>`;}
+function heading(eyebrow,title,description='',actions=''){return `<div class="page-heading"><div><h1>${title}</h1></div><div class="heading-actions">${button('How to use','page-guide',route)}${['annual','nospend','networth','payments','variable'].includes(route)?yearSelector():''}${actions}</div></div>`;}
 function metric(label,value,tone,note=''){return `<div class="metric" style="--tone:${tone}"><div class="metric-label">${label}</div><div class="metric-value">${value}</div><div class="metric-note">${note}</div></div>`;}
 function panel(title,body,extra='',cls=''){
  if(title==='Account balances')cls+=' accounts-balance-panel';
