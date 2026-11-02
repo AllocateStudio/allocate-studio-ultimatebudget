@@ -3,7 +3,7 @@
 const E=window.BudgetEngine, STORAGE_KEY='allocate-studio-budget-v1',BACKUP_KEY='allocate-studio-last-backup',EDIT_KEY='allocate-studio-last-edit',SNOOZE_KEY='allocate-studio-backup-snooze';
 let settingsJumpTarget=null;
 let storageLoadFailed=false,lastStoredBudget=null;
-let storageIssue='',state=loadState(),route='annual',filter={search:'',type:'All',status:'All',account:'All',person:'All',month:'All',page:0},categoryTab='Income',dialogSave=null;
+let storageIssue='',state=loadState(),route='annual',filter={search:'',type:'All',status:'All',account:'All',person:'All',month:'All',page:0},categoryTab='Income',dialogSave=null,pendingUndo=null,lastUndo=null;
 const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function loadState(){try{const saved=localStorage.getItem(STORAGE_KEY);lastStoredBudget=saved;if(saved){const s=JSON.parse(saved);validateState(s);return s;}}catch(e){storageLoadFailed=true;storageIssue='Saved data could not be loaded. Export or repair your saved file before replacing it.';}return starterState();}
 // Categories, people and accounts are the reusable template; every entered amount, rule and history is wiped.
@@ -41,8 +41,9 @@ function starterState(){
 function updateSaveStatus(){const el=$('#save-state');if(!el)return;const paused=storageLoadFailed||!!storageIssue;el.textContent=paused?'Saving paused':lastStoredBudget?'Saved on this device':'Local workspace';el.title=paused?storageIssue:'Budget data stays in this browser';el.dataset.status=paused?'paused':'ready';}
 function recoveryDateLabel(value){const d=new Date(value);if(!Number.isFinite(d.getTime()))return 'Unknown date';return new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZoneName:'short'}).format(d);}
 function saveState(){if(storageLoadFailed){storageIssue='Saved data could not be loaded. Restore a valid backup or explicitly reset the budget before saving. Your original saved data has been kept.';updateSaveStatus();return false;}try{if(localStorage.getItem(STORAGE_KEY)!==lastStoredBudget){storageIssue='Another tab changed this budget. Saving is paused to protect those changes. Download this tab as a backup before reloading.';updateSaveStatus();return false;}const serialized=JSON.stringify(state);localStorage.setItem(STORAGE_KEY,serialized);lastStoredBudget=serialized;storeTime(EDIT_KEY);storageIssue='';updateSaveStatus();return true;}catch(e){storageIssue='Your browser could not save changes. Export your data to keep a copy.';toast(storageIssue);updateSaveStatus();return false;}}
-function commit(message='Changes saved'){const saved=saveState();render();toast(saved?message:storageIssue);}
-function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),4500);}
+function commit(message='Changes saved'){const saved=saveState(),undo=pendingUndo;pendingUndo=null;lastUndo=null;render();if(saved&&undo){lastUndo=undo;undoToast(undo.message);}else toast(saved?message:storageIssue);}
+function undoToast(message){const el=$('#toast');el.innerHTML=`${esc(message)} <button type="button" class="toast-undo" data-action="undo-delete">Undo</button>`;el.classList.add('visible','has-action');clearTimeout(toast.timer);toast.timer=setTimeout(()=>{el.classList.remove('visible','has-action');lastUndo=null;},8000);}
+function toast(message){const el=$('#toast');el.textContent=message;el.classList.remove('has-action');el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),4500);}
 function validateState(s){if(!s||s.schemaVersion!==1||!s.settings||!Array.isArray(s.recurringRules)||!Array.isArray(s.variableTransactions)||!Array.isArray(s.categories)||!s.paymentOverrides||!s.netWorth||!s.debtPlan)throw Error('This is not an AllocateStudio budget export.');}
 // Keep recoverable copies before deliberate replacement, independently of the live budget.
 const RECOVERY_KEY=STORAGE_KEY+'-recovery-v1';

@@ -1014,3 +1014,7 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 .backup-reminder span{display:block;margin-top:2px}
 .backup-reminder-actions{display:flex;gap:8px;flex-wrap:wrap}
 .backup-status{margin:0 0 14px;font-size:.9rem}
+
+/* Undo link inside the toast after a deletion. */
+#toast.has-action{pointer-events:auto}
+#toast .toast-undo{margin-left:14px;padding:4px 2px;min-height:32px;border:0;background:transparent;color:#fff;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}
