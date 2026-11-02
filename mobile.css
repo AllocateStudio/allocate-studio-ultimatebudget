@@ -140,3 +140,14 @@
  #main .screen-switch .switch-pill{flex:1 1 0;justify-content:center;text-align:center}
  #main>.page-heading{position:static;padding-block:0;border-bottom:0;box-shadow:none;background:transparent}
 }
+
+/* Phones: a round + button adds a transaction from any page. */
+.quick-add{display:none}
+@media(max-width:600px){
+ .quick-add{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:56px;height:56px;padding:0 0 3px;border:0;border-radius:50%;background:var(--plum);color:#fff;font-size:2rem;line-height:1;box-shadow:0 6px 18px #30213b55;z-index:30;cursor:pointer}
+ .quick-add:hover{background:#5f526e}
+ .quick-add:active{transform:scale(.95)}
+ .quick-add:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
+ #toast{bottom:calc(88px + env(safe-area-inset-bottom))}
+ footer{margin-bottom:76px}
+}
