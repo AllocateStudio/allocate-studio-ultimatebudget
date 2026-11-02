@@ -137,7 +137,7 @@ function metric(label,value,tone,note=''){return `<div class="metric" style="--t
 function panel(title,body,extra='',cls=''){
  if(title==='Account balances')cls+=' accounts-balance-panel';
  if(['Budget preferences','Participants','Accounts'].includes(title))cls+=' settings-colored-panel item-'+(title==='Accounts'?'steel':'plum');
- const table=body.includes('<table'),tone=cls.match(/item-(teal|steel|plum|terra|olive|income)/)?.[1]||title.match(/data-tone="(teal|steel|plum|terra|olive|income)"/)?.[1]||categoryTones[title]||(title==='Categories'?categoryTones[categoryTab]:null)||({Assets:'teal','Net worth':'steel',Liabilities:'terra',Needs:'steel',Wants:'plum','Savings & Debt':'teal','Debt & Savings':'teal','Monthly repayment schedule':'steel'})[title]||'plum';
+ const table=body.includes('<table'),tone=cls.match(/item-(teal|steel|plum|terra|income)/)?.[1]||title.match(/data-tone="(teal|steel|plum|terra|income)"/)?.[1]||categoryTones[title]||(title==='Categories'?categoryTones[categoryTab]:null)||({Assets:'teal','Net worth':'steel',Liabilities:'terra',Needs:'steel',Wants:'plum','Savings & Debt':'teal','Debt & Savings':'teal','Monthly repayment schedule':'steel'})[title]||'plum';
  return `<section class="panel ${cls} ${table?'table-panel':''} ${body.includes('cartesian-chart')||body.includes('donut-wrap')?'chart-panel':''}" data-tone="${tone}"><div class="panel-head"><h2 class="section-title">${title}</h2>${extra}</div>${body}</section>`;
 }
 /* CHARTS — responsive SVG with accessible labels and native data tooltips. */
