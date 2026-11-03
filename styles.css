@@ -1021,3 +1021,7 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 .switch-pill:hover{background:var(--plum-light)}
 .switch-pill.active{background:var(--plum);color:#fff}
 .switch-pill:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
+
+/* Monthly overview: the category selector sits on the amount row, below the title bar. */
+.panel:has(>.annual-monthly-chart)>.panel-head{position:relative}
+.panel:has(>.annual-monthly-chart)>.panel-head>.annual-monthly-controls{position:absolute;top:calc(100% + 8px);right:14px;transform:none;width:auto;margin:0;z-index:5}
