@@ -1032,15 +1032,5 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 .empty-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
 .empty p{max-width:460px;margin:8px auto 0;line-height:1.5}
 
-/* Soft tinted table headers instead of saturated bands */
-.table-panel:not(.item-card)>.panel-head{background:var(--table-light,var(--plum-light));color:var(--ink);box-shadow:none;padding:16px 20px;border-bottom:1px solid var(--line)}
-.table-panel:not(.item-card)>.panel-head .section-title{text-transform:none;letter-spacing:0;font-size:1rem;font-weight:600;color:var(--table-tone)}
-.table-panel:not(.item-card) thead th{background:#fff;color:var(--table-tone,var(--plum));font-weight:600;border-bottom:1px solid var(--line)}
-.table-panel:not(.item-card) tfoot td{background:var(--table-light,var(--plum-light));color:var(--table-tone);font-weight:600}
-.category-panel>.tabs{background:var(--table-light);border-bottom:1px solid var(--line);padding:10px 20px;gap:8px}
-.category-panel>.tabs .tab{color:var(--muted);padding:6px 16px;border-radius:999px}
-.category-panel>.tabs .tab.active{color:#fff;background:var(--table-tone)}
-.category-panel .category-table thead th{background:#fff;color:var(--table-tone)}
-
 /* Savings and Debt cards: four per row so each column keeps its own color */
 @media(min-width:1251px){#main :is(.savings-goal-cards,.debt-schedule-cards){grid-template-columns:repeat(4,minmax(0,1fr))}}

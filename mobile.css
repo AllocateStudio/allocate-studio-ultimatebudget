@@ -100,7 +100,7 @@
  #main .mobile-analytic-scroll{isolation:isolate;position:relative;background:linear-gradient(to left,#70618218,transparent) right/14px 100% no-repeat;scroll-padding-left:120px}
  #main .mobile-analytic-scroll table{min-width:480px}
  #main .mobile-analytic-scroll :is(th,td):first-child{position:sticky;left:0;z-index:1;min-width:100px;max-width:160px;background:var(--white);box-shadow:2px 0 4px #2d30390d}
- #main .mobile-analytic-scroll tfoot td:first-child{background:var(--table-light,var(--plum-light));color:var(--table-tone,var(--plum))}
+ #main .mobile-analytic-scroll tfoot td:first-child{background:var(--table-mid);color:#fff}
  #main .mobile-agenda{display:flex;flex-direction:column;gap:12px;height:auto!important;border:0}
  #main .mobile-agenda>.weekday,#main .mobile-agenda>.mobile-empty-day{display:none}
  #main .mobile-agenda>.calendar-day:not(.mobile-empty-day){display:flex;flex-direction:column;gap:8px;min-height:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:visible}
