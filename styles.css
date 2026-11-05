@@ -1034,3 +1034,8 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 
 /* Savings and Debt cards: four per row so each column keeps its own color */
 @media(min-width:1251px){#main :is(.savings-goal-cards,.debt-schedule-cards){grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Net worth on tablets: gauge and assets breakdown side by side, the wide chart below them */
+@media(min-width:651px) and (max-width:1000px){.networth-charts-row>.panel:nth-child(2){order:3}}
+@media(max-width:650px){.networth-charts-row>.panel:nth-child(2){order:0}}
+@media(min-width:651px) and (max-width:1000px){.networth-assets-chart .donut-legend{grid-template-columns:1fr}}
