@@ -1031,3 +1031,15 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 /* Empty states explain the next step without replacing useful planning controls. */
 .empty-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
 .empty p{max-width:460px;margin:8px auto 0;line-height:1.5}
+
+/* Neutral tables: a white title bar and a thin accent line instead of colored bands. */
+.table-panel:not(.item-card){border-top:4px solid var(--table-tone,var(--plum))}
+.table-panel:not(.item-card)>.panel-head{background:#fff;color:var(--ink);box-shadow:none;padding:16px 20px;border-bottom:0}
+.table-panel:not(.item-card)>.panel-head .section-title{text-transform:none;letter-spacing:0;font-size:1rem;font-weight:600}
+.table-panel:not(.item-card) thead th{background:#fff;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line);text-transform:none;letter-spacing:0}
+.table-panel:not(.item-card) tfoot td{background:var(--table-light,var(--plum-light));color:var(--ink);font-weight:600}
+.category-panel>.tabs{background:#fff;border-bottom:1px solid var(--line);padding:10px 20px;gap:8px}
+.category-panel>.tabs .tab{color:var(--muted);padding:6px 16px;border-radius:999px}
+.category-panel>.tabs .tab.active{color:var(--table-tone);background:var(--table-light)}
+.category-panel>.tabs .tab:not(.active):hover{color:var(--ink);background:#f3f2f6}
+.category-panel .category-table thead th{background:#fff;color:var(--muted)}
