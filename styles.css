@@ -1046,3 +1046,6 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
  #main .metrics:has(>.metric:nth-child(5):last-child)>.metric{grid-column:span 2}
  #main .metrics:has(>.metric:nth-child(5):last-child)>.metric:nth-child(n+4){grid-column:span 3}
 }
+
+/* Phones: a lone last summary card spans the full row */
+@media(max-width:600px){#main .metrics>.metric:last-child:nth-child(odd){grid-column:1/-1}}
