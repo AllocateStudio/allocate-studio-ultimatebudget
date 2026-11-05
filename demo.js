@@ -7458,7 +7458,7 @@ window.BUDGET_DEMO = {
       },
       {
         "id": "net-65",
-        "name": "Primaty Home",
+        "name": "Primary Home",
         "side": "asset",
         "group": "Property",
         "balances": {
