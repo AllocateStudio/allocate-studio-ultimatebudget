@@ -555,7 +555,7 @@ select:not([multiple]):not([size]){appearance:none;-webkit-appearance:none;paddi
 .debt-schedule-cards .label-row{font-size:.78rem;gap:8px}
 .debt-card-schedule table{min-width:0}
 .debt-card-schedule th,.debt-card-schedule td{font-size:.72rem;padding:9px 4px}
-@media(max-width:1250px){.debt-schedule-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1250px){.debt-schedule-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.debt-schedule-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.debt-schedule-cards{grid-template-columns:1fr}}
 
@@ -565,7 +565,7 @@ select:not([multiple]):not([size]){appearance:none;-webkit-appearance:none;paddi
 .savings-goal-cards>.item-card>.panel-body{padding:12px}
 .savings-goal-cards .goal-value{font-size:1.4rem}
 .savings-goal-cards .label-row{font-size:.78rem;gap:8px}
-@media(max-width:1250px){.savings-goal-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1250px){.savings-goal-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.savings-goal-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.savings-goal-cards{grid-template-columns:1fr}}
 
