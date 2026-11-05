@@ -1041,3 +1041,6 @@ dialog{box-shadow:0 32px 90px #30213b40,0 10px 26px #30213b1f,inset 0 1px 0 #fff
 .category-panel>.tabs .tab{color:var(--muted);padding:6px 16px;border-radius:999px}
 .category-panel>.tabs .tab.active{color:#fff;background:var(--table-tone)}
 .category-panel .category-table thead th{background:#fff;color:var(--table-tone)}
+
+/* Savings and Debt cards: four per row so each column keeps its own color */
+@media(min-width:1251px){#main :is(.savings-goal-cards,.debt-schedule-cards){grid-template-columns:repeat(4,minmax(0,1fr))}}
